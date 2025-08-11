@@ -105,123 +105,207 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Insert all products from Discontinued_products into Products.
+
+Table attributes are ProductID, ProductName, Price, Stock
 
 ```sql
--- Paste your SQL code below for Question 1
+insert into Products(ProductID, ProductName, Price, Stock)
+SELECT  ProductID, ProductName, Price, Stock
+from Discontinued_products
 ```
 
 **Output:**
 
-![Output1](output.png)
+![image](https://github.com/user-attachments/assets/077f5368-6206-4b83-bb13-8cb417b54582)
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Insert the following products into the Products table:
+
+Name        Category     Price       Stock
+----------  -----------  ----------  ----------
+Smartphone  Electronics  800         150
+Headphones  Accessories  200         300
 
 ```sql
--- Paste your SQL code below for Question 2
+insert into Products(Name,Category,Price,Stock)values('Smartphone','Electronics',800,150),('Headphones','Accessories',200,300);
 ```
 
 **Output:**
 
-![Output2](output.png)
+![image](https://github.com/user-attachments/assets/aaa68917-d460-46ed-b9f4-bfe5f1c7db54)
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Insert a product with ProductID 104, Name Tablet, and Category Electronics into the Products table, where Price and Stock should use default values.
 
 ```sql
--- Paste your SQL code below for Question 3
+insert into products(ProductID,Name,Category,Price,Stock)values(104,'Tablet','Electronics',100,50);
 ```
 
 **Output:**
 
-![Output3](output.png)
+![image](https://github.com/user-attachments/assets/3f7626d3-00e9-45c3-a3ea-48c3e458796e)
+
 
 **Question 4**
 ---
--- Paste Question 4 here
-
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should set NULL on updates and deletes.
+item_desc and rate should not accept NULL.
 ```sql
--- Paste your SQL code below for Question 4
+create table item(
+item_id TEXT primary key,
+item_desc TEXT not null,
+rate INTEGER not null,
+icom_id TEXT(4),
+foreign key(icom_id) references company(com_id)
+on update set null
+on delete set null
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+![image](https://github.com/user-attachments/assets/1cfa7ffc-bdab-431f-b3be-a2865aedc939)
 
 **Question 5**
 ---
--- Paste Question 5 here
+Create a table named Orders with the following columns:
+
+OrderID as INTEGER
+OrderDate as TEXT
+CustomerID as INTEGER
 
 ```sql
--- Paste your SQL code below for Question 5
+create table Orders(
+OrderID  INTEGER,
+OrderDate  TEXT,
+CustomerID  INTEGER
+);
 ```
 
 **Output:**
 
-![Output5](output.png)
+![image](https://github.com/user-attachments/assets/02dc5864-b408-4418-8b64-88573c9ce50a)
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to Add a new column Mobilenumber as number in the Student_details table.
+
+Sample table: Student_details
+
+ cid              name             type             notnu  dflt_value  pk
+---------------  ---------------  ---------------  -----  ----------  ----------
+0                RollNo           int              0                  1
+1                Name             VARCHAR(100)     1                  0
+2                Gender           TEXT             1                  0
+3                Subject          VARCHAR(30)      0                  0
+4                MARKS            INT (3)          0                  0
 
 ```sql
--- Paste your SQL code below for Question 6
+
+ALTER TABLE Student_details
+Add column Mobilenumber number;
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/9f305d8e-d92d-4179-a023-2cbb74ef4176)
 
-![Output6](output.png)
 
 **Question 7**
 ---
--- Paste Question 7 here
+Create a table named Shipments with the following constraints:
+ShipmentID as INTEGER should be the primary key.
+ShipmentDate as DATE.
+SupplierID as INTEGER should be a foreign key referencing Suppliers(SupplierID).
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 
 ```sql
--- Paste your SQL code below for Question 7
+create table Shipments(
+ShipmentID INTEGER  primary key,
+ShipmentDate  DATE NOT NULL,
+SupplierID  INTEGER NOT NULL,
+OrderID  INTEGER NOT NULL,
+foreign key(SupplierID) references Suppliers(SupplierID),
+foreign key(OrderID) references Orders(OrderID)
+);
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/e10172ad-a601-4ef0-b2ce-c0c0369b9c70)
 
-![Output7](output.png)
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Create a table named Attendance with the following constraints:
+AttendanceID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+AttendanceDate as DATE.
+Status as TEXT should be one of 'Present', 'Absent', 'Leave'.
 
 ```sql
--- Paste your SQL code below for Question 8
+create table Attendance(
+AttendanceID INTEGER primary key,
+EmployeeID  INTEGER NOT NULL ,
+AttendanceDate  DATE,
+Status  TEXT  CHECK (STATUS IN('Present', 'Absent', 'Leave')),
+foreign key(EmployeeID) references Employees(EmployeeID)
+);
 ```
 
 **Output:**
 
-![Output8](output.png)
+![image](https://github.com/user-attachments/assets/55293e23-7a43-4038-812e-a7962a73dba0)
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Create a table named Tasks with the following columns:
+
+TaskID as INTEGER
+TaskName as TEXT
+DueDate as DATE
 
 ```sql
--- Paste your SQL code below for Question 9
+create table tasks(
+TaskID  INTEGER,
+TaskName TEXT,
+DueDate  DATE
+);
 ```
 
 **Output:**
 
-![Output9](output.png)
+![image](https://github.com/user-attachments/assets/191ef1cb-fb64-4897-b49c-12a4f359bb89)
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Insert the following customers into the Customers table:
+
+CustomerID  Name         Address     City        ZipCode
+----------  -----------  ----------  ----------  ----------
+302         Laura Croft  456 Elm St  Seattle     98101
+303         Bruce Wayne  789 Oak St  Gotham      10001
 
 ```sql
--- Paste your SQL code below for Question 10
+insert into Customers(CustomerID,Name,Address,City,ZipCode)values(302,'Laura Croft','456 Elm St','Seattle',98101),(303,'Bruce Wayne','789 Oak St','Gotham',10001);
 ```
 
 **Output:**
 
-![Output10](output.png)
+![image](https://github.com/user-attachments/assets/5d86e342-50b1-42d8-894c-4c411ce19e20)
 
 
 ## RESULT
